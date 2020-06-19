@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mButtonTop;
     private Button mButtomBottom;
     private TextView mStoryTextView;
+    private int mStoryIndex = 1;
 
 
 
@@ -36,25 +37,37 @@ public class MainActivity extends AppCompatActivity {
         mButtonTop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("destini", "Top button pressed");
-                Log.d("destini", mButtonTop.getText().toString());
-                Log.d("destini", mButtonTop.getText().toString());
-                Log.d("destini", getString(R.string.T1_Ans1));
-                if(mButtonTop.getText().equals(getString(R.string.T1_Ans1))  )                            // T1_Ans1
+            //    Log.d("destini", "Top button pressed");
+            //    Log.d("destini", mButtonTop.getText().toString());
+            //    Log.d("destini", mButtonTop.getText().toString());
+            //    Log.d("destini", getString(R.string.T1_Ans1));
+               // if(mButtonTop.getText().equals(getString(R.string.T1_Ans1))  )                            // T1_Ans1
+                if(mStoryIndex == 1 || mStoryIndex == 2 )                            // T1_Ans1
                 {
                     // change top button to T3_Ans1
+                    mButtonTop.setText(R.string.T3_Ans1);
 
                     // change bottom button to T3_Ans2
 
+                    mButtomBottom.setText(R.string.T3_Ans2);
+
                     // change display to T3_Story
                     mStoryTextView.setText(R.string.T3_Story);
+
+                    mStoryIndex = 3;
                 }
-                else if(mButtonTop.getText().equals(R.string.T3_Ans1))                       // T3_Ans1
+               // else if(mButtonTop.getText().equals(R.string.T3_Ans1))                       // T3_Ans1
+                else if(mStoryIndex == 3)                       // T3_Ans1
                 {
 
                     // change display to T6_End
 
+                    mStoryTextView.setText(R.string.T6_End);
+
                     // remove buttons
+                    mButtonTop.setVisibility(View.GONE);
+                    mButtomBottom.setVisibility(View.GONE);
+                    mStoryIndex = 4;
 
                 }
 
@@ -67,6 +80,44 @@ public class MainActivity extends AppCompatActivity {
         mButtomBottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+             //   if(mButtomBottom.getText().equals(getString(R.string.T1_Ans2))  )                            // T1_Ans1
+                if(mStoryIndex == 1  )                            // T1_Ans1
+                {
+                    // change top button to T3_Ans1
+                    mButtonTop.setText(R.string.T2_Ans1);
+
+                    // change bottom button to T3_Ans2
+
+                    mButtomBottom.setText(R.string.T2_Ans2);
+
+                    // change display to T3_Story
+                    mStoryTextView.setText(R.string.T2_Story);
+                    mStoryIndex = 2;
+                }
+                // else if(mButtonTop.getText().equals(R.string.T3_Ans1))                       // T3_Ans1
+                else if(mStoryIndex == 3)                       // terminate to T5
+                {
+
+
+                    mStoryTextView.setText(R.string.T5_End);
+
+                    // remove buttons
+                    mButtonTop.setVisibility(View.GONE);
+                    mButtomBottom.setVisibility(View.GONE);
+                    mStoryIndex = 4;
+
+                }
+                else if (mStoryIndex == 2)
+                {
+                    mStoryTextView.setText(R.string.T4_End);
+
+                    // remove buttons
+                    mButtonTop.setVisibility(View.GONE);
+                    mButtomBottom.setVisibility(View.GONE);
+                    mStoryIndex = 4;
+                }
+
 
             }
         });
